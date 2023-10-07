@@ -6,7 +6,7 @@ export default function App() {
     <View style={styles.container}>    
       <StatusBar Stype />  
       <Image
-      source={require('./assets/Ellipse8.png')}
+      source={require("../../assets/Ellipse8.png")}
        style={styles.image}
       />
       <Text style={styles.Text}>
