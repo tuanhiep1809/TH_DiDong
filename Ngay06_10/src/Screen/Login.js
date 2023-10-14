@@ -9,7 +9,8 @@ import {
   View,
 } from "react-native";
 import Screen2 from "./Screen2.js";
-export default function App({ navigation }) {
+export default function App({ navigation,route }) {
+  
   const [anPass, hienPass] = useState(false);
   return (
     <View style={styles.container}>
@@ -36,10 +37,8 @@ export default function App({ navigation }) {
             gap: "10px",
           }}
         >
-          <Image
-            source={require("../../assets/avatar_user.png")}
-            style={{ width: "30px", height: "30px" }}
-          />
+         
+          
           <TextInput
             placeholder="User Name"
             style={{ width: "80%", height: "100%", fontWeight: "bold" }}
