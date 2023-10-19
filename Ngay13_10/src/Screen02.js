@@ -8,14 +8,11 @@ import {
   TouchableOpacity,
   Text,
   View,
+  
 } from "react-native";
-import Screen01 from'./Screen01.js'
 export default function App({navigation}) {
-  const [mau, setMau] = useState("XanhDam");
-  var xanh = "Xanh";
-  var Do = "Do";
-  var den = "Den";
-  var xanhDam = "xanhDam";
+  const [mau, setMau] = useState(require("../assets/vs_blue.png"));
+  const [text, setText] = useState();
   return (
     <View style={styles.container}>
       <View
@@ -25,31 +22,26 @@ export default function App({navigation}) {
           flexDirection: "row",
         }}
       >
-        {mau == "XanhDam" ? (
-          <Image
-            source={require("../assets/vs_blue.png")}
+        <Image
+            source={mau}
             style={{ width: "103px", height: "105px", margin: "3px" }}
           />
-        ) : mau == "Do" ? (
-          <Image
-            source={require("../assets/vs_red.png")}
-            style={{ width: "103px", height: "105px", margin: "3px" }}
-          />
-        ) : mau == "Den" ? (
-          <Image
-            source={require("../assets/vs_black.png")}
-            style={{ width: "103px", height: "105px", margin: "3px" }}
-          />
-        ) : (
-          <Image
-            source={require("../assets/vs_silver.png")}
-            style={{ width: "103px", height: "105px", margin: "3px" }}
-          />
-        )}
-
-        <Text style={{ fontSize: "15px", fontWeight: "bold" }}>
+          <View style={{flexDirection:"column"}}>
+          <Text style={{ fontSize: "15px", fontWeight: "bold" }}>
           Điện Thoại Vsmart Joy {"\n"}3 Hàng chính hãng
         </Text>
+        {text == "silver" ? (
+        <Text style={{ fontSize: "15px", fontWeight: "bold" }}>Màu: silver {"\n"}Cung cấp bởi: Anh Hiệp {"\n"}2.000.000đ</Text>) 
+        :text == "red" ? (
+          <Text style={{ fontSize: "15px", fontWeight: "bold" }}>Màu: Red {"\n"}Cung cấp bởi: Hiệp haha {"\n"}3.000.000đ</Text>) 
+          :text == "black" ? (
+            <Text style={{ fontSize: "15px", fontWeight: "bold" }}>Màu: Black {"\n"}Cung cấp bởi: Hiệp Anh {"\n"}3.500.200đ</Text>) 
+        :text == "blue"?  (
+          <Text style={{ fontSize: "15px", fontWeight: "bold" }}>Màu: Blue {"\n"}Cung cấp bởi: Hiệp haha {"\n"}3.000.000đ</Text>) 
+          :null
+        }
+          </View>
+        
       </View>
       <View
         style={{ width: "100%", height: "80%", backgroundColor: "#C4C4C4" }}
@@ -61,7 +53,8 @@ export default function App({navigation}) {
           <View>
             <TouchableOpacity
               onPress={() => {
-                setMau("Xanh");
+                setMau(require("../assets/vs_silver.png"));
+                setText("silver");
               }}
               style={{
                 width: "85px",
@@ -74,7 +67,8 @@ export default function App({navigation}) {
           <View>
             <TouchableOpacity
               onPress={() => {
-                setMau("Do");
+                setMau(require("../assets/vs_red.png"));
+                setText("red");
               }}
               style={{
                 width: "85px",
@@ -87,7 +81,8 @@ export default function App({navigation}) {
           <View>
             <TouchableOpacity
               onPress={() => {
-                setMau("Den");
+                setMau(require("../assets/vs_black.png"));
+                setText("black");
               }}
               style={{
                 width: "85px",
@@ -100,7 +95,8 @@ export default function App({navigation}) {
           <View>
             <TouchableOpacity
               onPress={() => {
-                setMau("XanhDam");
+                setMau(require("../assets/vs_blue.png"));
+                setText("blue");
               }}
               style={{
                 width: "85px",
