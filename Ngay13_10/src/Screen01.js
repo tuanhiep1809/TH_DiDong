@@ -28,28 +28,11 @@ export default function App({route, navigation }) {
           alignItems: "center",
         }}
       >
-        
-        {mau1 == "XanhDam" ? (
-          <Image
+        <Image
             source={require("../assets/vs_blue.png")}
-            style={{ width: "103px", height: "105px", margin: "3px" }}
+            style={{ width: "283px", height: "305px", margin: "3px" }}
           />
-        ) : mau1 == "Do" ? (
-          <Image
-            source={require("../assets/vs_red.png")}
-            style={{ width: "103px", height: "105px", margin: "3px" }}
-          />
-        ) : mau1 == "Den" ? (
-          <Image
-            source={require("../assets/vs_black.png")}
-            style={{ width: "103px", height: "105px", margin: "3px" }}
-          />
-        ) : (
-          <Image
-            source={require("../assets/vs_silver.png")}
-            style={{ width: "103px", height: "105px", margin: "3px" }}
-          />
-        )}
+
 
        
         <Text style={{ fontWeight: "bold", fontSize: 15 }}>
