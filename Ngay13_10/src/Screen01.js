@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React, { Component, useState } from "react";
+import React, { Component, useState,useEffect } from "react";
 import {
   StyleSheet,
   Image,
@@ -11,13 +11,16 @@ import {
 
 import Screen02 from'./Screen02.js'
 export default function App({route, navigation }) {
+  const [mau, setMau] = useState(require("../assets/vs_blue.png"));
 
-    const mau = route.params;
-    console.log
-    var mau2 ;
-    mau==undefined?mau2="XanhDam":mau2=mau;
-  const [mau1, setMau] = useState(mau2);
-  console.log(mau2)
+  useEffect(() => {
+  
+    if (route.params?.mau) {
+      setMau(route.params.mau);
+    }
+  }, [route.params?.mau]);
+
+  
   return (
     <View style={styles.container}>
       <View
@@ -29,7 +32,7 @@ export default function App({route, navigation }) {
         }}
       >
         <Image
-            source={require("../assets/vs_blue.png")}
+            source={mau}
             style={{ width: "283px", height: "305px", margin: "3px" }}
           />
 
