@@ -9,7 +9,9 @@ import {
   FlatList,
 } from "react-native";
 import { useState } from "react";
+import{Ionicons} from '@expo/vector-icons'
 export default function App({ navigation, route }) {
+  const name =  route.params.name
   const job = [
     {
       name: "To check email",
@@ -30,6 +32,10 @@ export default function App({ navigation, route }) {
       name: "Learn Java",
     },
   ];
+  const [searchText, setSearchText] = useState("");
+  const filteredData = job.filter((item) =>
+    item.name.toLowerCase().includes(searchText.toLowerCase())
+  );
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -49,10 +55,10 @@ export default function App({ navigation, route }) {
           style={{ width: 30, height: 30, resizeMode: "contain" }}
           source={require("../assets/Frame (1).png")}
         />
-        <TextInput style={{ width: 250, height: 50 }} placeholder="Search" />
+        <TextInput onChangeText={(textt) => setSearchText(textt)} style={{ width: 250, height: 50 }} placeholder="Search" />
       </TouchableOpacity>
       <FlatList
-        data={job}
+        data={filteredData}
         renderItem={({ item }) => {
           return (
             <View
@@ -101,10 +107,12 @@ export default function App({ navigation, route }) {
           );
         }}
       />
-      <TouchableOpacity style={{backgroundColor:'#00BDD6', borderRadius:100,width:69,height:69,justifyContent:'center',alignItems:'center'}}>
-        <Text  style={{fontSize:74,color:'white',textAlign:'center',borderWidth:1}}>
-            +
-        </Text>
+      <TouchableOpacity
+       onPress={()=>{
+        navigation.navigate('Screen03',{name})
+      }}
+      style={{backgroundColor:'#00BDD6', borderRadius:100,width:69,height:69,justifyContent:'center',alignItems:'center'}}>
+      <Ionicons name="add" size={45} color="white" />
       </TouchableOpacity>
     </View>
   );

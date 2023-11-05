@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Screen01 from "./src/Screen01.js";
 import Screen02 from "./src/Screen02.js";
+import Screen03 from "./src/Screen03.js";
 
 export default function App() {
   const stack = createNativeStackNavigator();
@@ -48,6 +49,39 @@ export default function App() {
           })}
           name="Screen02"
           component={Screen02}
+        />
+        <stack.Screen
+          options={({ route }) => ({
+            title: "",
+            headerRight: () => {
+              return (
+                <View style={{ flexDirection: "row" }}>
+                  <Image
+                    style={{
+                      width: 50,
+                      height: 50,
+                      borderRadius: 100,
+                      resizeMode: "contain",
+                    }}
+                    source={require("./assets/Rectangle.png")}
+                  />
+                  <View>
+                    <View style={{ flexDirection: "row" }}>
+                      <Text style={{ fontWeight: "bold" }}>Hi  </Text>
+                      <Text style={{ fontWeight: "bold" }}>
+                        {route.params.name}
+                      </Text>
+                    </View>
+                    <Text>
+                    Have agrate day a head
+                    </Text>
+                  </View>
+                </View>
+              );
+            },
+          })}
+          name="Screen03"
+          component={Screen03}
         />
       </stack.Navigator>
     </NavigationContainer>
