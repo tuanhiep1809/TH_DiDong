@@ -36,7 +36,7 @@ export default function add({ navigation,route}) {
         .then((response) => response.json())
         .then((data) => {
           // Xử lý phản hồi từ API
-          navigation.navigate("DisplayNote",{updateName:nameNew,account:route.params?.account,updatepriority:selectedPriority})
+          navigation.navigate("DisplayNote",{updateName:nameNew,account:route.params?.account})
         })
         .catch((error) => {
           console.error("Có lỗi xảy ra: ", error);

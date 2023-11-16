@@ -31,9 +31,8 @@ export default function Screen01({ navigation, route }) {
       });
   }, [
     deleten,
-    route.params?.nameN,
+    route.params?.nameNoteAdd,
     route.params?.updateName,
-    route.params?.updatepriority,
   ]);
   const deleteNote = (id) => {
     fetch(`https://5vd232-8080.csb.app/notes/${id}`, {
