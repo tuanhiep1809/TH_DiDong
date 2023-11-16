@@ -17,9 +17,10 @@ import { AntDesign } from "@expo/vector-icons";
 export default function Screen01({ navigation, route }) {
   const [notes, setNotes] = React.useState([]);
   const [deleten, setdeleten] = React.useState("");
-  const [seeall, setSeeAll] = React.useState("");
   React.useEffect(() => {
-    fetch(`https://5vd232-8080.csb.app/notes?account_id=${route.params?.account.id}`)
+    fetch(
+      `https://5vd232-8080.csb.app/notes?account_id=${route.params?.account.id}`
+    )
       .then((response) => response.json())
       .then((data) => {
         setNotes(data);
@@ -28,45 +29,55 @@ export default function Screen01({ navigation, route }) {
         // Xử lý lỗi nếu có
         console.error("Có lỗi xảy ra: ", error);
       });
-  }, [deleten,route.params?.nameN,route.params?.updateName,route.params?.updatepriority,seeall]);
+  }, [
+    deleten,
+    route.params?.nameN,
+    route.params?.updateName,
+    route.params?.updatepriority,
+  ]);
   const deleteNote = (id) => {
     fetch(`https://5vd232-8080.csb.app/notes/${id}`, {
       method: "DELETE",
     })
       .then((response) => response.json())
       .then((data) => {
-        // Xử lý phản hồi từ API sau khi xóa thành công  
-        setdeleten(id)
+        // Xử lý phản hồi từ API sau khi xóa thành công
+        setdeleten(id);
       })
       .catch((error) => {
         console.error("Có lỗi xảy ra: ", error);
       });
   };
-  const [term, setTerm] = React.useState("all");
-function changeTime(value){
-  setTerm(value)
-  fetch(`https://5vd232-8080.csb.app/notes?term=${value}&account_id=${route.params?.account.id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setNotes(data);
-      })
-      .catch((error) => {
-        // Xử lý lỗi nếu có
-        console.error("Có lỗi xảy ra: ", error);
-      });
-}
-function changeTime(value){
-  setTerm(value)
-  fetch(`https://5vd232-8080.csb.app/notes?term=${value}&account_id=${route.params?.account.id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setNotes(data);
-      })
-      .catch((error) => {
-        // Xử lý lỗi nếu có
-        console.error("Có lỗi xảy ra: ", error);
-      });
-}
+  const [term, setTerm] = React.useState("");
+  function changeTime(value) {
+    setTerm(value);
+    if (value === "all") {
+      fetch(
+        `https://5vd232-8080.csb.app/notes?account_id=${route.params?.account.id}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setNotes(data);
+        })
+        .catch((error) => {
+          // Xử lý lỗi nếu có
+          console.error("Có lỗi xảy ra: ", error);
+        });
+    } else {
+      fetch(
+        `https://5vd232-8080.csb.app/notes?term=${value}&account_id=${route.params?.account.id}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setNotes(data);
+        })
+        .catch((error) => {
+          // Xử lý lỗi nếu có
+          console.error("Có lỗi xảy ra: ", error);
+        });
+    }
+  }
+
   return (
     <View style={styles.container}>
       <Text style={{ fontSize: 29, fontWeight: "bold", marginTop: 20 }}>
@@ -116,7 +127,7 @@ function changeTime(value){
       >
         <TouchableOpacity
           onPress={() => {
-            changeTime('short')
+            changeTime("short");
           }}
           style={{
             width: 80,
@@ -132,7 +143,7 @@ function changeTime(value){
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
-            changeTime('long')
+            changeTime("long");
           }}
           style={{
             width: 80,
@@ -148,10 +159,7 @@ function changeTime(value){
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
-            let y=0;
-            setSeeAll("see")
-            setTerm(`all${++y}`)
-            console.log(y)
+            changeTime("all");
           }}
         >
           <Text
@@ -232,7 +240,10 @@ function changeTime(value){
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={() => {
-                      navigation.navigate("UpdateNote", { note: item,account: route.params?.account });
+                      navigation.navigate("UpdateNote", {
+                        note: item,
+                        account: route.params?.account,
+                      });
                     }}
                     style={{ paddingRight: 20 }}
                   >
