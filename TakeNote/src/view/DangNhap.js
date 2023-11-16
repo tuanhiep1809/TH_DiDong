@@ -13,26 +13,31 @@ import {
 import * as React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import FlashMessage, { showMessage } from "react-native-flash-message";
-export default function Screen01({ navigation,route }) {
+export default function Screen01({ navigation, route }) {
   const [tk, setTK] = React.useState("");
   const [MK, setMK] = React.useState("");
   const [found, setFound] = React.useState(false);
-  const [dataAccount, setdataAccount] = React.useState([]);
-  React.useEffect(() => {
+  function dangNhap() {
     fetch("https://5vd232-8080.csb.app/accounts")
       .then((response) => response.json())
       .then((data) => {
-        setdataAccount(data);
-        const isFound = data.find(
-          (item) => item.email === tk && item.password === MK
-        );
-        setFound(isFound);
+        const account = data.find((item) => item.email === tk && item.password === MK);
+        if (account) {
+          navigation.navigate("DisplayNote", { account: account }); 
+        } else {
+          showMessage({
+            message: "Tài khoản hoặc mật khẩu không chính xác!!!",
+            type: "info",
+            duration: 3000, // Thời gian tồn tại của thông báo, tính bằng millisecond
+          });
+        }
       })
       .catch((error) => {
         // Xử lý lỗi nếu có
         console.error("Có lỗi xảy ra: ", error);
       });
-  }, [route.params?.tk]);
+  }
+
   return (
     <View style={styles.container}>
       <FlashMessage position="top" />
@@ -114,18 +119,7 @@ export default function Screen01({ navigation,route }) {
       </View>
       <TouchableOpacity
         onPress={() => {
-          if (found) {
-            const account = dataAccount.find(
-              (item) => item.email === tk && item.password === MK
-            );
-            navigation.navigate("DisplayNote", { account:account });
-          } else {
-            showMessage({
-              message: "Tài khoản hoặc mật khẩu không chính xác!!!",
-              type: "info",
-              duration: 3000, // Thời gian tồn tại của thông báo, tính bằng millisecond
-            });
-          }
+          dangNhap();
         }}
         style={{
           backgroundColor: "blue",
