@@ -8,10 +8,6 @@ import {
   View,
 } from "react-native";
 
-import LinearGradient from 'react-native-linear-gradient';
-
-const gradientColors = ["#C7F4F7", "#D1F4F6", "#E5F4F5", "#00CCF9"];
-
 export default function App() {
   return (
     <View style={styles.container}>
