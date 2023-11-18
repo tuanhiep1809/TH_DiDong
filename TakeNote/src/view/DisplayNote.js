@@ -76,6 +76,10 @@ export default function Screen01({ navigation, route }) {
         });
     }
   }
+  const [seachText,setseachText] = React.useState('')
+    const filterdata = notes.filter((item) =>
+    item.name.toLowerCase().includes(seachText.toLowerCase())
+  );
 
   return (
     <View style={styles.container}>
@@ -101,6 +105,7 @@ export default function Screen01({ navigation, route }) {
             marginLeft: 4,
             borderRadius: 5,
           }}
+          onChangeText={setseachText}
           placeholder="Search..."
         />
         <Image
@@ -181,7 +186,7 @@ export default function Screen01({ navigation, route }) {
         }}
       >
         <FlatList
-          data={notes}
+          data={filterdata}
           renderItem={({ item }) => {
             let i = 1;
             return (

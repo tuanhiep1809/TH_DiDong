@@ -36,7 +36,8 @@ export default function add({ navigation,route}) {
         .then((response) => response.json())
         .then((data) => {
           // Xử lý phản hồi từ API
-          navigation.navigate("DisplayNote",{updateName:nameNew,account:route.params?.account})
+          navigation.navigate("DisplayNote",{updateName:nameNew,
+            account:route.params?.account})
         })
         .catch((error) => {
           console.error("Có lỗi xảy ra: ", error);
@@ -49,6 +50,7 @@ export default function add({ navigation,route}) {
       });
       console.log("a");
     }}
+    
   return (
     <View style={styles.container}>
       <Text style={{ fontSize: 24, fontWeight: "bold", marginTop: 40 }}>

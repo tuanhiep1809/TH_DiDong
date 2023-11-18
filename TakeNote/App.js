@@ -13,22 +13,14 @@ export default function App() {
   return (
       <NavigationContainer >
         <Stack.Navigator >
-          <Stack.Screen options={{headerShown:false}} name="DangNhap" component={DangNhap} />
+          <Stack.Screen options={{headerShown:false}} 
+          name="DangNhap" component={DangNhap} />
           <Stack.Screen
           options={({ route }) => ({
             title: "",
             headerRight: () => {
               return (
                 <View style={{ flexDirection: "row" }}>
-                  {/* <Image
-                    style={{
-                      width: 50,
-                      height: 50,
-                      borderRadius: 100,
-                      resizeMode: "contain",
-                    }}
-                    source={require("./assets/Rectangle.png")}
-                  /> */}
                   <View>
                     <View style={{ flexDirection: "row" }}>
                       <Text style={{ fontWeight: "bold" }}>
