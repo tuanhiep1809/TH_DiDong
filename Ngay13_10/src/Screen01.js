@@ -33,7 +33,7 @@ export default function App({route, navigation }) {
       >
         <Image
             source={mau}
-            style={{ width: "283px", height: "305px", margin: "3px" }}
+            style={{ width: "283px", height: "305px", margin: "3px",resizeMode:"contain" }}
           />
 
 

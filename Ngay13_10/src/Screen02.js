@@ -24,7 +24,7 @@ export default function App({navigation}) {
       >
         <Image
             source={mau}
-            style={{ width: "103px", height: "105px", margin: "3px" }}
+            style={{ width: "103px", height: "105px", margin: "3px",resizeMode:"contain" }}
           />
           <View style={{flexDirection:"column"}}>
           <Text style={{ fontSize: "15px", fontWeight: "bold" }}>
